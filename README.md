@@ -32,20 +32,23 @@ Dense output layer : Fully connected layer with 10 units (one unit per class) us
 
 Once the architecture was defined, the model was compiled using the Adam optimizer, the Sparse Categorical Crossentropy loss function to handle the integer-encoded digit labels, and Accuracy as the primary evaluation metric.
 
-Finally, the model was trained on the training dataset for a maximun of 15 epochs using batch size of 128, with 10% of the training data set aside as a validation split to monitor performance after each epoch. To prevent overfitting and save computational power, an Early Stopping callback was implemented to monitor the validation loss. If the validaion loss failed to improve for 3 consecutive epochs, the training was automatically halted and the model resored the weights from its best-performing epoch.
+Finally, the model was trained on the training dataset for a maximum of 15 epochs using a batch size of 128, with 10% of the training data set aside as a validation split to monitor performance after each epoch. To prevent overfitting and save computational power, an Early Stopping callback was implemented to monitor the validation loss. If the validation loss failed to improve for 3 consecutive epochs, the training was automatically halted and the model resored the weights from its best-performing epoch.
 
-##Results
+## Results
 
-Plots
+### Plots
 
 Looking at the loss and accuracy plots, the blue line represents the training data across each epoch, while the orange line represents the validation data. Because the two curves remain closely aligned and validation accuracy reaches nearly 99%, we can see that the model trained successfully and generalizes well to unseen data without severe overfitting.
 
-Confussion Matrix
+**Loss:** Both curves start at a higher value, drop steeply during the first few epochs, and then gradually flatten out as they approach zero. This shows that with each epoch, the model's prediction error decreases and it becomes more confident in its answers.
 
-Looking at the confussion matrix, it is clear where the mistakes where made and their frequency. The vertical axis indicates the true values and the horizontal the model's predictions. The diagonal line represents the predictions that correclty matched the true data. 
+**Accuracy:** The opposite trend is visible: as the model trains across more epochs, accuracy climbs rapidly at first—jumping from around 91.5% to over 98% within just a few epochs—before leveling off near 99% as the model fine-tunes its predictions.
 
-By examining the off-diagonal cells, we can identify the model's predictive errors. Most notably, the model misclassified the digits 1 (10 instances) and 9 (13 instances) as a 7, likely because the handwritten strokes of these numbers share structural similarities. Ofcourse, these are not the only misclassifications the model made, but they are not as many. 
+### Confusion Matrix
 
-## 
+Looking at the confussion matrix, it is clear where the mistakes were made and their frequency. The vertical axis indicates the true values and the horizontal axis represents the model's predictions. The diagonal line represents the predictions that correctly matched the true data. 
 
+By examining the off-diagonal cells, we can identify the model's predictive errors. Most notably, the model misclassified the digits 1 (10 instances) and 9 (13 instances) as a 7, likely because the handwritten strokes of these numbers share structural similarities. Of course, these are not the only misclassifications the model made, though other errors occured much less frequently.
+
+## Improving the Model
    
