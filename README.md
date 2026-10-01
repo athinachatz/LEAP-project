@@ -63,6 +63,7 @@ It is worth mentioning that during this training run, the model did not reach th
 ### Results and Comparison
 
 ![Improved Model Confusion Matrix](improved_confusion_matrix.png)
+
 The improved model's overall accuracy increased to nearly 99%. 
 
 Looking at the confusion matrix for the improved model (Improved Confusion Matrix, some off-diagonal errors still remain, though the pattern shifted. Specifically, the first model mostly misclassified the digits 1 and 9 as a 7. Adding the extra convolutional and pooling layers reduced the count of mistakes in these cases from 10 to 5 for digit 1, and from 13 to 7 for digit 9. However, this change caused more mistakes between the digits 4 and 9, which the second model confused more frequently. Even though performance improved for one set of digits, it worsened for another.
