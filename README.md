@@ -15,19 +15,19 @@ To prepare the inputs for the Convolutional Neural Network, these flat rows were
 ### 3. Model
 The network is built using the Sequential model (straight stack of layers, added in order). 
 
-**Input layer :** Expects an incoming matrix of (28, 28, 1), representing a 28x28 pixel image with a single grayscale color channel. 
+* **Input layer :** Expects an incoming matrix of (28, 28, 1), representing a 28x28 pixel image with a single grayscale color channel. 
 
-**Convolutional layer(Conv2D) :** Applies 32 filters  with a 3x3 window and a ReLU activation function to extract spatial feaures (like edges and curves) from digits.
+* **Convolutional layer(Conv2D) :** Applies 32 filters  with a 3x3 window and a ReLU activation function to extract spatial feaures (like edges and curves) from digits.
 
-**Pooling layer(MaxPooling2D) :** Uses a 2x2 window to downsample the feature maps, reducing computational load.
+* **Pooling layer(MaxPooling2D) :** Uses a 2x2 window to downsample the feature maps, reducing computational load.
 
-**Dropout layer :** Randomly deactivates 30% of neurons during training to prevent overfitting.
+* **Dropout layer :** Randomly deactivates 30% of neurons during training to prevent overfitting.
 
-**Flatten layer :** Converts the 2D matrix into a 1D array so it can be passed into the traditional neural network layers.
+* **Flatten layer :** Converts the 2D matrix into a 1D array so it can be passed into the traditional neural network layers.
 
-**Dense hidden layer :** Fully connected layer with 64 units and a ReLU activation function that learns complex patterns.
+* **Dense hidden layer :** Fully connected layer with 64 units and a ReLU activation function that learns complex patterns.
 
-**Dense output layer :** Fully connected layer with 10 units (one unit per class) using softmax activation function to output the probability for each class.
+* **Dense output layer :** Fully connected layer with 10 units (one unit per class) using softmax activation function to output the probability for each class.
 
 
 Once the architecture was defined, the model was compiled using the Adam optimizer, the Sparse Categorical Crossentropy loss function to handle the integer-encoded digit labels, and Accuracy as the primary evaluation metric.
@@ -67,3 +67,7 @@ It is worth mentioning that during this training run, the model did not reach th
 The improved model's overall accuracy increased to nearly 99%. 
 
 Looking at the confusion matrix for the improved model (Improved Confusion Matrix, some off-diagonal errors still remain, though the pattern shifted. Specifically, the first model mostly misclassified the digits 1 and 9 as a 7. Adding the extra convolutional and pooling layers reduced the count of mistakes in these cases from 10 to 5 for digit 1, and from 13 to 7 for digit 9. However, this change caused more mistakes between the digits 4 and 9, which the second model confused more frequently. Even though performance improved for one set of digits, it worsened for another.
+
+## Considerations
+
+While the model achieves nearly 99% accuracy on the MNIST test set, it would likely struggle to perform at the same level on uncurated, real-world handwritten data. Real-world handwriting varies widely based on personal style, cultural conventions (such as crossing the digit 7), age, and profession. Furthermore, real images often contain background noise, uneven lighting, and off-center digits. To deploy a truly representative and reliable model, it would need to be trained on a much larger and more diverse dataset.
